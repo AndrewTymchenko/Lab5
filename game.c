@@ -36,13 +36,13 @@ unsigned char movePlayer(unsigned char player, unsigned char direction)
                      player |= BIT6;
                      break;
              case RIGHT:
-                                  if (player < 0x87 || player >= 0xC0){
-                                          player++;
+                     if (player < 0x87 || player >= 0xC0){
+                    	 player++;
                                   }
-                                  break;
+                     break;
              case LEFT:
-                                  if ((player & 0x0f)>0)
-                                          player--;
+                     if ((player & 0x0f)>0)
+                    	 player--;
 
      }
      printPlayer(player);
