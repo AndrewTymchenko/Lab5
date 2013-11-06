@@ -7,7 +7,7 @@
 
 #include <msp430g2553.h>
 #include "game.h"
-#include "LCD/LCD.h"
+#include "lcd.h"
 
 unsigned char initPlayer()
 {
@@ -16,24 +16,35 @@ unsigned char initPlayer()
 
 void printPlayer(unsigned char player)
 {
-        writeCommandByte(player);
-        writeDataByte('*');
+	writeCommandByte(player); //debugging: forgot to include in lcd.h when transferring from Lab 4
+	writeDataByte('*');
 }
 
 void clearPlayer(unsigned char player)
 {
-        writeCommandByte(player);
-        writeDataByte(' ');
+	writeCommandByte(player);
+	writeDataByte(' ');
 }
 
 unsigned char movePlayer(unsigned char player, unsigned char direction)
-{
+{		clearPlayer(player);
         switch (direction) {
-                //
-                // update player position based on direction of movement
-                //
-        }
-
+        case UP:
+                     player &= ~BIT6;
+                     break;
+             case DOWN:
+                     player |= BIT6;
+                     break;
+             case LEFT:
+                                  if ((player & 0x0f)>0)
+                                          player--;
+             case RIGHT:
+                     if (player < 0x87 || player >= 0xC0){
+                             player++;
+                     }
+                     break;
+     }
+     printPlayer(player);
         return player;
 }
 
