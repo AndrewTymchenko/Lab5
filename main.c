@@ -6,7 +6,7 @@
 
 void init_timer();
 void init_buttons();
-void moveProperPlayer(char buttonToTest);
+void movingPlayer(char buttonToTest);
 void Reset(char buttonToTest);
 
 char btnPush = 0;
@@ -92,7 +92,7 @@ void init_buttons()
 void testAndRespondToButtonPush(char buttonToTest){
         if (buttonToTest & P2IFG){
                 if(buttonToTest & P2IES){
-                        moveProperPlayer(buttonToTest);
+                        movingPlayer(buttonToTest);
                         clearTimer();
                 }
                 else{
@@ -103,7 +103,7 @@ void testAndRespondToButtonPush(char buttonToTest){
         }
 }
 
-void moveProperPlayer(char buttonToTest){ //C2C Mossing explained concept
+void movingPlayer(char buttonToTest){ //C2C Mossing explained concept
         switch(buttonToTest){
         case BIT3:
                 player=movePlayer(player,RIGHT);
